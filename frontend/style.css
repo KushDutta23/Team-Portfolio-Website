@@ -1,0 +1,592 @@
+/* --- Global Styles & Resets --- */
+:root {
+    --primary-color: #00FFFF; /* Electric Blue */
+    --secondary-color: #FF00FF; /* Neon Pink */
+    --accent-color: #800080; /* Electric Purple */
+    --text-color: #FFFFFF; /* White */
+    --light-text-color: #B0B0B0; /* Slightly dimmer white/light gray */
+    --bg-color: #121212; /* Dark Gray background */
+    --light-gray-bg: #1E1E1E; /* Slightly lighter dark gray for sections/cards */
+    --border-color: #383838; /* Subtle dark border */
+    --font-primary: 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    --font-weight-light: 200;
+    --font-weight-normal: 400;
+    --font-weight-bold: 600;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adjusted for dark theme */
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    font-weight: var(--font-weight-normal);
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+}
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--light-text-color);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--accent-color); /* Electric Purple on hover */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Accessibility --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--bg-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for header */
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-color);
+}
+.logo:hover {
+    color: var(--accent-color);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 20px;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-weight: var(--font-weight-normal);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    background-color: var(--primary-color); /* Electric Blue background */
+    color: #000000; /* Black text for contrast on Electric Blue */
+}
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    position: relative;
+    transition: transform var(--transition-speed) ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    left: 0;
+    transition: transform var(--transition-speed) ease, top var(--transition-speed) ease;
+}
+
+.hamburger::before { top: -8px; }
+.hamburger::after { top: 8px; }
+
+/* --- Main Content Sections --- */
+main section {
+    padding: 60px 0;
+}
+
+main section:nth-child(even) {
+    background-color: var(--light-gray-bg);
+}
+
+/* --- Buttons --- */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: var(--font-weight-bold);
+    transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, color var(--transition-speed) ease, filter var(--transition-speed) ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color); /* Electric Blue */
+    color: #000000; /* Black text for contrast */
+}
+.btn-primary:hover {
+    filter: brightness(90%); /* Slightly darken Electric Blue */
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color); /* Electric Blue text */
+    border: 2px solid var(--primary-color); /* Electric Blue border */
+}
+.btn-secondary:hover {
+    background-color: var(--primary-color); /* Electric Blue background */
+    color: #000000; /* Black text for contrast */
+    transform: translateY(-2px);
+}
+
+/* --- Home Page Specific --- */
+.hero {
+    text-align: center;
+    padding: 100px 0;
+    position: relative;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for strong contrast */
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.8);
+}
+.hero .tagline {
+    font-size: 1.2rem;
+    color: var(--light-text-color);
+    margin-bottom: 2rem;
+    font-weight: var(--font-weight-light);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.group-image {
+    max-width: 500px;
+    margin: 1.5rem auto 2rem auto;
+    display: block;
+}
+
+.cta-buttons {
+    margin-top: 2rem;
+}
+.cta-buttons .btn {
+    margin: 0 10px;
+}
+.hero .btn-primary { /* Hero primary button still Electric Blue with black text */
+    background-color: var(--primary-color);
+    color: #000000;
+}
+.hero .btn-primary:hover {
+    filter: brightness(90%);
+}
+.hero .btn-secondary { /* Hero secondary button: White text/border on dark overlay */
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+.hero .btn-secondary:hover {
+    background-color: var(--text-color); /* White background */
+    color: #000000; /* Black text */
+}
+
+
+.home-about {
+    text-align: center;
+}
+.home-about h2 {
+    color: var(--primary-color); /* "Who We Are" in Electric Blue */
+}
+
+/* --- About Page Specific --- */
+.team-members h1, .team-members > .container > p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.member-profile {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: var(--light-gray-bg);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    align-items: flex-start;
+    border: 1px solid var(--border-color);
+}
+
+.member-profile:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: #B0B0B0; /* Electric Blue border for profile pics */
+}
+
+.member-info {
+    flex-grow: 1;
+}
+
+.member-info h2 { /* Member name */
+    color: var(--primary-color); /* Electric Blue */
+    margin-top: 0;
+}
+.member-info .role {
+    font-weight: bold;
+    font-size: 20px ;
+    color: #f9fafc; /* Neon Pink for role */
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.5rem;
+}
+.member-info .tagline {
+    font-weight: var(--font-weight-light);
+    font-style: italic;
+    color: var(--light-text-color);
+    margin-bottom: 1rem;
+}
+.member-info h3 { /* "Key Skills", "Bio" headings */
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color); /* Neon Pink for these subheadings for better pop */
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.3rem;
+}
+.skills-list {
+    padding-left: 0;
+}
+.skills-list li {
+    display: inline-block;
+    background-color: var(--bg-color); /* Main dark bg for skill tags */
+    color: var(--light-text-color);
+    padding: 5px 10px;
+    margin: 5px 5px 5px 0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+}
+
+/* --- Skills Page Specific --- */
+.skills-overview h1, .skills-overview > .container > p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+.skill-category {
+    background-color: var(--light-gray-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+.skill-category h3 {
+    color: var(--primary-color); /* Electric Blue for category titles */
+    margin-bottom: 15px;
+}
+.skill-tag {
+    display: inline-block;
+    background-color: var(--bg-color);
+    color: var(--light-text-color);
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-color);
+}
+.skill-tag:hover {
+    background-color: var(--primary-color); /* Electric Blue background */
+    color: #000000; /* Black text */
+    border-color: var(--primary-color);
+}
+
+
+/* --- Portfolio Page Specific --- */
+.portfolio-status {
+    text-align: center;
+}
+.portfolio-status h2 {
+    color: #383838; /* Neon Pink */
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* --- Contact Page Specific --- */
+.contact-form-section h1, .contact-form-section > .container > p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    background-color: var(--light-gray-bg);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: inherit;
+    background-color: var(--bg-color); /* Dark input fields */
+    color: var(--text-color); /* Light text in input fields */
+}
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+    color: var(--light-text-color);
+}
+.form-group textarea {
+    resize: vertical;
+}
+.form-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.member-contact-info h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.contact-card {
+    background-color: var(--light-gray-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    text-align: center;
+    border: 1px solid var(--border-color);
+}
+.contact-card h3 {
+    color: var(--primary-color); /* Electric Blue for contact card names */
+}
+.contact-card p {
+    margin-bottom: 0.5rem;
+    color: var(--light-text-color);
+}
+.contact-card a {
+    color: #B0B0B0; /* Electric Purple for links in contact cards */
+}
+.contact-card a:hover {
+    color: var(--primary-color); /* Hover to Electric Blue */
+}
+
+
+/* --- Footer --- */
+footer {
+    background-color: #444;
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+}
+footer p {
+    color: var(--text-color);
+    margin-bottom: 0;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.3rem; }
+
+    .nav-toggle {
+        display: block;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: var(--bg-color);
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 5rem;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+        transition: left var(--transition-speed) ease;
+        border-right: 1px solid var(--border-color);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links li {
+        margin-left: 0;
+        width: 100%;
+    }
+    .nav-links a {
+        display: block;
+        padding: 1rem 1.5rem;
+        width: 100%;
+        border-radius: 0;
+        color: var(--text-color);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+        background-color: var(--primary-color);
+        color: #000000; /* Black text on Electric Blue */
+    }
+
+    .nav-toggle.active .hamburger {
+        background-color: transparent;
+    }
+    .nav-toggle.active .hamburger::before {
+        transform: rotate(45deg);
+        top: 0;
+        background-color: var(--text-color);
+    }
+    .nav-toggle.active .hamburger::after {
+        transform: rotate(-45deg);
+        top: 0;
+        background-color: var(--text-color);
+    }
+
+
+    .member-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profile-pic {
+        margin-bottom: 20px;
+    }
+
+    .skills-grid, .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 60px 0;
+    }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero .tagline {
+        font-size: 1rem;
+    }
+    .group-image {
+        max-width: 80%;
+    }
+}
