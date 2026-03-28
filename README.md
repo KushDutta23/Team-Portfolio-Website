@@ -17,14 +17,6 @@ IMPORTANT: To get a live link like the one above, you can use GitHub Pages.
 5. It might take a minute, but your site will be live at the URL provided!
 -->
 
-### 📸 Screenshot
-
-![Team Innovate Website Screenshot](./images/screenshot.png)
-
-<!-- 
-TIP: Take a screenshot of your finished home page and save it in your `images` folder as `screenshot.png` so it shows up here.
--->
-
 ---
 
 ## 🚀 Features
